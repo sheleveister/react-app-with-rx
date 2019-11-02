@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { TracksPropsType } from "./Tracks.types";
+
 import TableControls from '../../components/TableControls';
 import TableComponent from '../../components/Table';
 import { columns } from '../../utils/tracks.utils';
 import { ITableTrack, ITrack } from '../../models/track';
 import { getTableDataWithKey } from '../../utils/common.utils';
+
+import { TracksPropsType } from "./Tracks.types";
 import './Tracks.scss';
 
 

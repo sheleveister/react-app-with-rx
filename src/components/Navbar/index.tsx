@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Menu, Icon } from 'antd';
+import { Icon, Menu } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { DEFAULT_NAV_LINK, navigation } from '../../utils/navigation';
 import { ClickParam } from 'antd/lib/menu';
+
+import { DEFAULT_NAV_LINK, navigation } from '../../utils/navigation';
+
 import { NavbarPropsType, NavbarStateType } from './Navbar.types';
 import './Navbar.scss';
 

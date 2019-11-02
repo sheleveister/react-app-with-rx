@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+
 import TableComponent from '../../components/Table/index';
 import TableControls from '../../components/TableControls/index';
 import { ITableUser, IUser } from '../../models/user';
 import { columns } from '../../utils/users.utils';
-import { UsersPropsType } from './Users.types';
 import { getTableDataWithKey } from '../../utils/common.utils';
+
+import { UsersPropsType } from './Users.types';
 import './Users.scss';
 
 

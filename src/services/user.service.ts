@@ -1,6 +1,7 @@
-import { TUserToAdd, IUser } from '../models/user';
+import { IUser, TUserToAdd } from '../models/user';
 import { CollectionType } from '../models/firebase';
 import { firebaseClient } from '../api/firebaseClient';
+
 import { FirebaseCrudService } from './firebaseCrud.service';
 
 

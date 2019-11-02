@@ -1,9 +1,11 @@
-import firebase from './firebase';
-import { Observable, from, of, Subject } from 'rxjs';
+import { from, Observable, of, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { buildUrl, FullApiRequest, ApiRequest, ApiClient } from './apiClient';
+
 import { fromFirebaseSnapshot } from '../utils/firebase.utils';
-import {FirebaseParams, CollectionType } from '../models/firebase';
+import {CollectionType, FirebaseParams } from '../models/firebase';
+
+import firebase from './firebase';
+import { ApiClient, ApiRequest, buildUrl, FullApiRequest } from './apiClient';
 
 const createFirebaseClient = (): ApiClient => {
   const errorSubj$ = new Subject<Error>();
