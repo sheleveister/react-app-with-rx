@@ -1,21 +1,32 @@
-import { firebaseClient } from '../api/firebaseClient';
 import { Observable } from 'rxjs';
 import { TUserToAdd, IUser } from '../models/user';
 import { CollectionType } from '../models/firebase';
+import { ApiClient } from '../api/apiClient';
+import { firebaseClient } from '../api/firebaseClient';
 
 // @TODO think about making service creator and passing client there
-export namespace UserService {
-  export const getUsers = (): Observable<IUser[]> => firebaseClient.get<IUser[]>({ url: CollectionType.users });
+class UserService {
+  private client: ApiClient;
 
-  export const getUser = (userId: number): Observable<IUser> => firebaseClient
+  constructor(client: ApiClient) {
+    this.client = client;
+  }
+  getUsers = (): Observable<IUser[]> => this.client
+    .get<IUser[]>({ url: CollectionType.users });
+
+  getUser = (userId: string): Observable<IUser> => this.client
     .get<IUser>({ url: `${CollectionType.users}/${userId}` });
 
-  export const addUser = (user: TUserToAdd) => firebaseClient
-    .post({ url: CollectionType.users, body: user });
+  addUser = (user: TUserToAdd) => this.client
+    .post<IUser>({ url: CollectionType.users, body: user });
 
-  export const removeUser = (userId: string) => firebaseClient
-    .post({ url: `${CollectionType.users}/${userId}`});
+  removeUser = (userId: string) => this.client
+    .remove<string>({ url: `${CollectionType.users}/${userId}`});
 
-  export const editUser = (userId: string, newUser: TUserToAdd) => firebaseClient
-    .put({ url: `${CollectionType.users}/${userId}`, body: newUser });
+  editUser = (userId: string, newUser: TUserToAdd) => this.client
+    .put<IUser>({ url: `${CollectionType.users}/${userId}`, body: newUser });
 }
+
+const userService = new UserService(firebaseClient);
+
+export {userService};

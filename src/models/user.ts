@@ -1,10 +1,5 @@
-export interface User {
-  id: string;
+export interface ITableUser extends IUser {
   key: string;
-  name: string;
-  age: number;
-  address: string;
-  note: string;
 }
 
 export interface IUser {
