@@ -34,7 +34,7 @@ export type UsersPropsType = {
 };
 
 class Users extends Component<UsersPropsType> {
-  getMappedData = () => {
+  getMappedData = (): ITableUser[] => {
     const {users} = this.props;
     return users.map((user) => {
       return {
