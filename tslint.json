@@ -1,0 +1,48 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "no-magic-numbers": true,
+    "jsx-wrap-multiline": false,
+    "no-submodule-imports": false,
+    "jsx-boolean-value": false,
+    "jsx-no-lambda": false,
+    "no-empty": false,
+    "no-implicit-dependencies": [true, "dev"],
+    "member-access": false,
+    "eofline": true,
+    "no-unused-expression": false,
+    "array-type": false,
+    "object-literal-sort-keys": false,
+    "no-shadowed-variable": false,
+    "no-console": false,
+    "interface-over-type-literal": false,
+    "interface-name": false,
+    "no-var-requires": false,
+    "max-line-length": [
+      true,
+      {
+        "limit": 120,
+        "ignore-pattern": "^import |^export {(.*?)}"
+      }
+    ],
+    "no-empty-interface": false,
+    "ordered-imports": [
+      true,
+      {
+        "import-sources-order": "any",
+        "grouped-imports": true,
+        "named-imports-order": "case-insensitive"
+      }
+    ]
+  },
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**/*.ts",
+      "src/serviceWorker.ts"
+    ]
+  }
+}
