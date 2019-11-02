@@ -1,7 +1,27 @@
 @import '~antd/dist/antd.min.css';
 
 .Container {
-  padding: 24px;
   display: flex;
+  flex-direction: column;
+  padding: 24px;
   height: 100%;
+}
+
+.Button {
+  width: fit-content;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.TableControls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.CustomIcon {
+  font-size: 20px;
+  margin: 8px;
+  cursor: pointer;
 }
