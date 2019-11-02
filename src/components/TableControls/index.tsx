@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Icon } from 'antd';
+
 import './TableControls.scss';
 
 type TableControlsPropsType = {

@@ -1,5 +1,4 @@
 import firebase from 'firebase/app';
-import 'firebase/firestore';
 
 // @TODO move to configs folder
 const config = {

@@ -1,51 +1,19 @@
 import React, { Component } from 'react';
+
 import TableComponent from '../../components/Table/index';
 import TableControls from '../../components/TableControls/index';
-import { Column } from '../../models/table';
 import { ITableUser, IUser } from '../../models/user';
+import { columns } from '../../utils/users.utils';
+import { getTableDataWithKey } from '../../utils/common.utils';
+
+import { UsersPropsType } from './Users.types';
 import './Users.scss';
 
 
-const columns: Column[] = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Note',
-    dataIndex: 'note',
-    key: 'note',
-  },
-];
-
-export type UsersPropsType = {
-  users: IUser[];
-};
-
 class Users extends Component<UsersPropsType> {
-  getMappedData = (): ITableUser[] => {
-    const {users} = this.props;
-    return users.map((user) => {
-      return {
-        key: user.id,
-        ...user,
-      }
-    });
-  }
-
   render() {
-    const data = this.getMappedData();
+    const { users } = this.props;
+    const data = getTableDataWithKey<IUser>(users);
 
     return (
       <div className="Container">
