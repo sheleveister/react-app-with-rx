@@ -3,16 +3,7 @@ import { Observable, from, of, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { buildUrl, FullApiRequest, ApiRequest, ApiClient } from './apiClient';
 import { fromFirebaseSnapshot } from '../utils/firebase.utils';
-
-export enum CollectionType {
-  users = 'users',
-  tracks = 'tracks',
-}
-
-interface FirebaseParams {
-  collectionName: CollectionType;
-  itemId?: string;
-}
+import {FirebaseParams, CollectionType } from '../models/firebase';
 
 const createFirebaseClient = (): ApiClient => {
   const errorSubj$ = new Subject<Error>();
