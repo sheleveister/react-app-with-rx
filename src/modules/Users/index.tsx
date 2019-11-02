@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TableComponent from '../../components/Table/index';
 import TableControls from '../../components/TableControls/index';
 import { Column } from '../../models/table';
-import { User } from '../../models/user';
+import { ITableUser, IUser } from '../../models/user';
 import './Users.scss';
 
 
@@ -29,44 +29,31 @@ const columns: Column[] = [
   },
 ];
 
-const data: User[] = [
-  {
-    id: '1',
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    note: 'developer',
-  },
-  {
-    id: '2',
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    note: 'loser',
-  },
-  {
-    id: '3',
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    note: 'teacher',
-  },
-];
-
-type UsersPropsType = {};
+export type UsersPropsType = {
+  users: IUser[];
+};
 
 class Users extends Component<UsersPropsType> {
+  getMappedData = (): ITableUser[] => {
+    const {users} = this.props;
+    return users.map((user) => {
+      return {
+        key: user.id,
+        ...user,
+      }
+    });
+  }
+
   render() {
+    const data = this.getMappedData();
+
     return (
       <div className="Container">
         <TableControls
           buttonText="Create new User"
           iconTitle="Delete User"
         />
-        <TableComponent<User>
+        <TableComponent<ITableUser>
           columns={columns}
           data={data}
         />

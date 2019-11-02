@@ -51,14 +51,14 @@ const createFirebaseClient = (): ApiClient => {
       }
       case 'POST': {
         return from(ref.add(body as Object)).pipe(
-          map(item => ({ ...body, id: item.id } as unknown as R)),
+          map(item => ({ ...body, id: item.id } as R)),
         )
       }
 
       case 'DELETE': {
         // @TODO handle itemId === undefined
         return from(ref.doc(itemId).delete()).pipe(
-          map(() => ({ itemId }) as unknown as R),
+          map(() => itemId as unknown as R),
         );
       }
 
