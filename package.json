@@ -23,9 +23,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "yarn run lint react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "tslint -c tslint.json src/**/*.{ts,tsx}",
+    "lint-fix": "tslint --fix --format verbose src/**/*.{ts,tsx}"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -46,6 +48,9 @@
     "@types/antd": "^1.0.0",
     "@types/qs": "^6.5.3",
     "@types/react-loadable": "^5.5.2",
-    "@types/react-router-dom": "^5.1.2"
+    "@types/react-router-dom": "^5.1.2",
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.1.0"
   }
 }
