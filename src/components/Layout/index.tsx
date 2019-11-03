@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
-import { Router } from '../Router/index';
-import Navbar from '../Navbar/index';
+import { Router } from '../Router';
+import Navbar from '../Navbar';
 
 type LayoutPropsType = {};
 
