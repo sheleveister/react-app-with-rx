@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 
 import TableComponent from '../../components/Table/index';
 import TableControls from '../../components/TableControls/index';
-import { ITableUser, IUser } from '../../models/user';
+import { IUser } from '../../models/user';
 import { columns } from '../../utils/users.utils';
-import { getTableDataWithKey } from '../../utils/common.utils';
 
 import { UsersPropsType } from './Users.types';
 import './Users.scss';
@@ -13,7 +12,6 @@ import './Users.scss';
 class Users extends Component<UsersPropsType> {
   render() {
     const { users } = this.props;
-    const data = getTableDataWithKey<IUser>(users);
 
     return (
       <div className="Container">
@@ -21,9 +19,9 @@ class Users extends Component<UsersPropsType> {
           buttonText="Create new User"
           iconTitle="Delete User"
         />
-        <TableComponent<ITableUser>
+        <TableComponent<IUser>
           columns={columns}
-          data={data}
+          data={users}
         />
       </div>
     )

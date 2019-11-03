@@ -1,7 +1,3 @@
-export interface ITableUser extends IUser {
-  key: string;
-}
-
 export interface IUser {
   name: string;
   id: string;
