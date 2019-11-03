@@ -15,6 +15,7 @@ export type TracksPropsType = {
   setIsVisible: (flag: boolean) => void;
   handleCancel: () => void;
   cardControls: any;
+  onValueChange: (value: any) => void;
 };
 
 

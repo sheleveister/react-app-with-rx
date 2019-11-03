@@ -3,14 +3,24 @@ import { Input } from 'antd';
 
 import ModalDialog from '../../components/Modal';
 
-type TracksCardPropsType = any;
+type TracksCardPropsType = {
+  onValueChange: (value: any) => void;
+  cardControls: any;
+  isVisible: boolean;
+  setIsVisible: (flag: boolean) => void;
+};
 
 
 class TracksCard extends Component<TracksCardPropsType> {
+
   handleChange = (flag: string, e: ChangeEvent<HTMLInputElement>) => {
-    const { onValueChange } = this.props;
-    onValueChange(flag, e.target.value);
-    console.log(e.target.value);
+    const { onValueChange, cardControls } = this.props;
+    const newCardControls = {
+      ...cardControls,
+      [flag]: e.target.value,
+    }
+
+    onValueChange(newCardControls);
   };
 
   render() {

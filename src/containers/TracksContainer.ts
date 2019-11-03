@@ -7,20 +7,19 @@ import { trackViewModel } from '../viewModels/modal.viewModel';
 export const TracksContainer = withRX<TracksPropsType>(Tracks)(() => {
   const tracks$ = trackService.get();
   const {
-    isVisible,
+    isVisible$,
     setIsVisible,
-    cardControls,
+    cardControls$,
     onValueChange,
   } = trackViewModel;
-
 
   return {
     defaultProps: {
       tracks: [],
       isVisible: false,
-      setIsVisible: () => null,
+      setIsVisible,
       handleCancel: () => null,
-      onValueChange: () => {},
+      onValueChange,
       cardControls: {
         name: '',
         author: '',
@@ -30,10 +29,8 @@ export const TracksContainer = withRX<TracksPropsType>(Tracks)(() => {
     },
     props: {
       tracks: tracks$,
-      isVisible,
-      setIsVisible,
-      cardControls,
-      onValueChange,
+      isVisible: isVisible$,
+      cardControls: cardControls$,
     },
   }
 });
