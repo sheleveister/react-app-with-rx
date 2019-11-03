@@ -15,12 +15,12 @@ type TablePropsType<T> = {
 class TableComponent<T extends THasId> extends Component<TablePropsType<T>> {
   render() {
     const { columns, data } = this.props;
-    const mapped = getTableDataWithKey<T>(data);
+    const mappedData = getTableDataWithKey<T>(data);
     return (
       <div className="TableContainer">
         <Table
           columns={columns}
-          dataSource={mapped}
+          dataSource={mappedData}
         />
       </div>
     )
