@@ -7,6 +7,7 @@ import { DEFAULT_NAV_LINK, navigation } from '../../utils/navigation';
 
 import { NavbarPropsType, NavbarStateType } from './Navbar.types';
 import './Navbar.scss';
+import { INavigation } from '../../models/navigation';
 
 const { Item } = Menu;
 
@@ -14,6 +15,20 @@ const { Item } = Menu;
 class Navbar extends Component<NavbarPropsType, NavbarStateType> {
   state = {
     current: DEFAULT_NAV_LINK,
+  };
+
+  componentDidMount(): void {
+    this.getNavLink();
+  }
+
+  getNavLink = () => {
+    const { pathname } = this.props.location;
+    const currentPath: INavigation|undefined = navigation
+      .find(item => item.link === pathname);
+
+    if (currentPath) {
+      this.setState({ current: currentPath.key });
+    }
   };
 
   handleClick = (e: ClickParam): void => {

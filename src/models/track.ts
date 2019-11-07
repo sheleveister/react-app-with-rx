@@ -2,8 +2,8 @@ export interface ITrack {
   id: string;
   name: string;
   author: string;
-  duration: number;
-  year: number;
+  duration: number|null;
+  year: number|null;
 }
 
 export type TTrackToAdd = Omit<ITrack, 'id'>;

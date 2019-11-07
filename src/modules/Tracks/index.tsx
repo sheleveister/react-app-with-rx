@@ -16,6 +16,7 @@ export type TracksPropsType = {
   handleCancel: () => void;
   cardControls: any;
   onValueChange: (value: any) => void;
+  saveCard: (data: any) => void;
 };
 
 
@@ -27,7 +28,6 @@ class Tracks extends Component<TracksPropsType> {
 
   render() {
     const { tracks } = this.props;
-    console.log('this.props', this.props);
 
     return (
       <div className="Container">

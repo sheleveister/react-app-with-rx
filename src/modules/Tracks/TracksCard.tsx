@@ -1,32 +1,45 @@
 import React, { ChangeEvent, Component } from 'react';
-import { Input } from 'antd';
+import { Input, Button } from 'antd';
 
 import ModalDialog from '../../components/Modal';
+import { TracksPropsType } from './index';
+import { defaultCardControls } from '../../containers/TracksContainer';
 
-type TracksCardPropsType = {
-  onValueChange: (value: any) => void;
-  cardControls: any;
-  isVisible: boolean;
-  setIsVisible: (flag: boolean) => void;
-};
+type TracksCardPropsType = TracksPropsType & {};
 
 
 class TracksCard extends Component<TracksCardPropsType> {
+
+  isFormValid = () => {
+    const { cardControls } = this.props;
+    return !Object.values(cardControls).every(value => !!value);
+  };
 
   handleChange = (flag: string, e: ChangeEvent<HTMLInputElement>) => {
     const { onValueChange, cardControls } = this.props;
     const newCardControls = {
       ...cardControls,
       [flag]: e.target.value,
-    }
+    };
 
     onValueChange(newCardControls);
+  };
+
+  handleSaveCard = () => {
+    const { cardControls, saveCard } = this.props;
+    saveCard(cardControls);
+  };
+
+  handleCloseCard = () => {
+    const { setIsVisible, onValueChange } = this.props;
+    setIsVisible(false);
+    onValueChange(defaultCardControls);
   };
 
   render() {
     const {
       isVisible,
-      setIsVisible,
+      // setIsVisible,
       cardControls: {
         name,
         author,
@@ -38,8 +51,24 @@ class TracksCard extends Component<TracksCardPropsType> {
     return (
       <ModalDialog
         visible={isVisible}
-        handleSubmit={() => {}}
-        handleCancel={() => setIsVisible(false)}
+        // handleSubmit={() => {}}
+        handleCancel={this.handleCloseCard}
+        footer={[
+          <Button
+            key="back"
+            onClick={this.handleCloseCard}
+          >
+            Cancel
+          </Button>,
+          <Button
+            key="submit"
+            type="primary"
+            disabled={this.isFormValid()}
+            onClick={this.handleSaveCard}
+          >
+            Submit
+          </Button>,
+        ]}
       >
         <Input
           className="Input"

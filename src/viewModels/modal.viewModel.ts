@@ -1,37 +1,37 @@
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { map, take, takeLast } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { TTrackToAdd } from '../models/track';
 
 interface TracksViewModel {
   isVisible$: Observable<boolean>;
   setIsVisible: (flag: boolean) => void;
-  // handleCancel: Observable<() => void>;
-  cardControls$: any;
+  cardControls$: Observable<TTrackToAdd>;
   onValueChange: (value: any) => void;
 }
 
 const createTracksViewModel = (): TracksViewModel => {
-  const cardControls: any = {
+  const cardControls: TTrackToAdd = {
     name: '',
     author: '',
-    duration: '',
-    year: '',
+    duration: null,
+    year: null,
   };
 
   const isVisibleSubject = new BehaviorSubject<boolean>(false);
-  const cardControlsSubject = new BehaviorSubject<any>(cardControls);
+  const cardControlsSubject = new BehaviorSubject<TTrackToAdd>(cardControls);
 
   const isVisible$ = isVisibleSubject.asObservable();
-  const setIsVisible = (flag: boolean) => isVisibleSubject.next(flag);
   const cardControls$ = cardControlsSubject.asObservable();
 
-  const onValueChange = (value: any) => {
+  const setIsVisible = (flag: boolean) => isVisibleSubject.next(flag);
+
+  const onValueChange = (value: TTrackToAdd) => {
     cardControlsSubject.next(value);
-  }
+  };
 
   return {
     isVisible$,
-    setIsVisible,
     cardControls$,
+    setIsVisible,
     onValueChange,
   }
 };

@@ -11,6 +11,7 @@ class ModalDialog extends Component<ModalDialogPropsType> {
       visible,
       handleSubmit,
       handleCancel,
+      footer,
     } = this.props;
 
     return (
@@ -20,6 +21,7 @@ class ModalDialog extends Component<ModalDialogPropsType> {
           visible={visible}
           onOk={handleSubmit}
           onCancel={handleCancel}
+          footer={footer}
         >
           {children}
         </Modal>
