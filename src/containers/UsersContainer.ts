@@ -22,6 +22,6 @@ export const UsersContainer = withRX<UsersPropsType>(Users)(() => {
     },
     effects$: merge(
       saveEffects$,
-  ),
+    ),
   }
 });

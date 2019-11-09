@@ -20,9 +20,7 @@ export const createUserModalViewModel = (): UserModalViewModel => {
 
   const isPendingSubject = new BehaviorSubject<boolean>(false);
   const isPending$ = isPendingSubject.asObservable();
-  const setIsPending = (flag: boolean) => {
-    isPendingSubject.next(flag);
-  }
+  const setIsPending = (flag: boolean) => isPendingSubject.next(flag);
 
   const cardControlsSubject = new BehaviorSubject<RawItem<IUser>>(defaultUserCard);
   const cardControls$ = cardControlsSubject.asObservable();
@@ -30,8 +28,8 @@ export const createUserModalViewModel = (): UserModalViewModel => {
 
   return {
     isOpened$,
-    cardControls$,
     toggleModal,
+    cardControls$,
     onValueChange,
     isPending$,
     setIsPending,

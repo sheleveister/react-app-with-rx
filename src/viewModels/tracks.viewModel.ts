@@ -1,4 +1,4 @@
-import { combineLatest, Observable, Subject } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { startWith, switchMap, tap } from "rxjs/operators";
 
 import { ITrack, RawItem } from "../models/track";
@@ -16,12 +16,10 @@ export const createTracksViewModel = (): TracksViewModel => {
   const tracksSaveHandler$ = new Subject<RawItem<ITrack>>();
   const tracksSaveEffects$ = tracksSaveHandler$.pipe(
     tap(() => trackModalViewModel.setIsPending(true)),
-    switchMap((track: RawItem<ITrack>) =>  trackService.post(track)),
+    switchMap((track: RawItem<ITrack>) => trackService.post(track)),
     tap(() => trackModalViewModel.setIsPending(false)),
     // @TODO error handler
     tap(() => trackModalViewModel.toggleModal(false)),
-    
-
   );
 
   const tracks$ = tracksSaveEffects$.pipe(
@@ -33,13 +31,9 @@ export const createTracksViewModel = (): TracksViewModel => {
     tracksSaveHandler$.next(track);
   }
 
-  const mergedEffects$ = combineLatest([
-    tracksSaveEffects$,
-  ]);
-
   return {
     tracks$,
-    saveEffects$: mergedEffects$,
+    saveEffects$: tracksSaveEffects$,
     addTrack,
   }
 }

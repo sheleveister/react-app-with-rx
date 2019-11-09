@@ -1,5 +1,4 @@
 import { withRX } from '@devexperts/react-kit/dist/utils/with-rx2';
-import { map } from 'rxjs/operators';
 
 import { trackModalViewModel } from '../viewModels/trackModal.viewModel';
 import { tracksViewModel } from '../viewModels/tracks.viewModel';

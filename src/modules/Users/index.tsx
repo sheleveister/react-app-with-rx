@@ -15,13 +15,13 @@ export type UsersPropsType = {
 
 class Users extends Component<UsersPropsType> {
   render() {
-    const { users } = this.props;
+    const { users, openModal } = this.props;
     return (
       <div className="Container">
         <TableControls
           buttonText="Create new User"
           iconTitle="Delete User"
-          handleOnClick={this.props.openModal}
+          handleOnClick={openModal}
         />
         <TableComponent<IUser>
           columns={columns}

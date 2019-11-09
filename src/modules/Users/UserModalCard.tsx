@@ -16,7 +16,6 @@ export interface UserModalCardPropsType {
 };
 
 class ModalCard extends Component<UserModalCardPropsType> {
-
   isFormValid = () => {
     const { cardControls } = this.props;
     return !Object.values(cardControls).every(value => !!value);
@@ -48,6 +47,7 @@ class ModalCard extends Component<UserModalCardPropsType> {
     return Object.entries(cardControls).map(([key, value]) => {
       const modelKey = key as keyof RawItem<IUser>;
       const inputSettings = mapModelToInput[modelKey];
+
       switch (inputSettings.type) {
         case (InputType.number): {
           return (
@@ -56,9 +56,7 @@ class ModalCard extends Component<UserModalCardPropsType> {
               className="Input"
               placeholder={inputSettings.placeholder}
               value={value as number | undefined}
-              onChange={(value) => {
-                this.handleChange(modelKey, value);
-              }}
+              onChange={(value) => this.handleChange(modelKey, value)}
             />
           )
         }
@@ -97,14 +95,14 @@ class ModalCard extends Component<UserModalCardPropsType> {
           <Button
             key="submit"
             type="primary"
-            disabled={this.isFormValid() && !isPending}
+            disabled={this.isFormValid() || isPending}
             onClick={this.handleSaveCard}
           >
             Submit
           </Button>,
         ]}
-      >{this.renderMappedInputs()
-      }
+      >
+        {this.renderMappedInputs()}
       </ModalDialog>
     )
   }

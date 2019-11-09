@@ -1,5 +1,4 @@
 import { withRX } from '@devexperts/react-kit/dist/utils/with-rx2';
-import { map } from 'rxjs/operators';
 
 import { userModalViewModel } from '../viewModels/userModal.viewModel';
 import { usersViewModel } from '../viewModels/users.viewModel';

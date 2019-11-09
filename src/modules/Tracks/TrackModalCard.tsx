@@ -97,7 +97,7 @@ class ModalCard extends Component<TrackModalCardPropsType> {
           <Button
             key="submit"
             type="primary"
-            disabled={this.isFormValid() && !isPending}
+            disabled={this.isFormValid() || isPending}
             onClick={this.handleSaveCard}
           >
             Submit
