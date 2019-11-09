@@ -1,5 +1,7 @@
+import { RouteComponentProps } from 'react-router';
+
 export type NavbarStateType = {
   current: string;
 }
 
-export type NavbarPropsType = {};
+export type NavbarPropsType = RouteComponentProps;

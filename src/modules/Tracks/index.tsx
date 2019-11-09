@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 
 import TableControls from '../../components/TableControls';
 import TableComponent from '../../components/Table';
-import { columns } from '../../utils/tracks.utils';
+import { columns, mapTrackToInput } from '../../utils/tracks.utils';
 import { ITrack } from '../../models/track';
-import { getTableDataWithKey } from '../../utils/common.utils';
+import { TrackModalContainer } from '../../containers/TrackModalContainer';
 
-import { TracksPropsType } from "./Tracks.types";
 import './Tracks.scss';
 
+
+export type TracksPropsType = {
+  tracks: ITrack[];
+  openModal: () => void;
+};
 
 class Tracks extends Component<TracksPropsType> {
   render() {
@@ -17,12 +21,16 @@ class Tracks extends Component<TracksPropsType> {
     return (
       <div className="Container">
         <TableControls
-          buttonText="Create new User"
-          iconTitle="Delete User"
+          buttonText="Create new Track"
+          iconTitle="Delete Track"
+          handleOnClick={this.props.openModal}
         />
         <TableComponent<ITrack>
           columns={columns}
           data={tracks}
+        />
+        <TrackModalContainer
+          mapModelToInput={mapTrackToInput}
         />
       </div>
     )

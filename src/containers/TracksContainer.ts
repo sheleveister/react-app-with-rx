@@ -1,18 +1,28 @@
 import { withRX } from '@devexperts/react-kit/dist/utils/with-rx2';
+import { merge } from 'rxjs';
 
-import { trackService } from '../services/track.service';
-import { TracksPropsType } from '../modules/Tracks/Tracks.types';
-import Tracks from '../modules/Tracks';
+import Tracks, { TracksPropsType } from '../modules/Tracks';
+import { trackModalViewModel } from '../viewModels/trackModal.viewModel';
+import { tracksViewModel } from '../viewModels/tracks.viewModel';
 
 export const TracksContainer = withRX<TracksPropsType>(Tracks)(() => {
-  const tracks$ = trackService.get();
+  const {
+    toggleModal,
+  } = trackModalViewModel;
+
+  const { saveEffects$, tracks$ } = tracksViewModel;
+
 
   return {
     defaultProps: {
       tracks: [],
+      openModal: () => toggleModal(true),
     },
     props: {
       tracks: tracks$,
     },
+    effects$: merge(
+      saveEffects$,
+    ),
   }
 });

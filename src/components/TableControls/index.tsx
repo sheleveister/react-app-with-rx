@@ -6,17 +6,20 @@ import './TableControls.scss';
 type TableControlsPropsType = {
   buttonText: string;
   iconTitle: string;
+  handleOnClick: () => void;
 }
 
 
 class TableControls extends Component<TableControlsPropsType> {
   render() {
-    const { buttonText, iconTitle } = this.props;
+    const { buttonText, iconTitle, handleOnClick } = this.props;
 
     return (
       <div className="TableControls">
         <Button className="Button"
-          type="primary">
+          type="primary"
+          onClick={handleOnClick}
+        >
           { buttonText }
         </Button>
         <Icon title={iconTitle}

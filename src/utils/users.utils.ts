@@ -1,4 +1,6 @@
 import { Column } from '../models/table';
+import { InputType, RawItem, TModelToInput } from '../models/common';
+import { IUser } from '../models/user';
 
 export const columns: Column[] = [
   {
@@ -22,3 +24,29 @@ export const columns: Column[] = [
     key: 'note',
   },
 ];
+
+export const defaultUserCard: RawItem<IUser> = {
+  name: '',
+  address: '',
+  age: undefined,
+  note: '',
+};
+
+export const mapUserToInput: TModelToInput<RawItem<IUser>> = {
+  name: {
+    type: InputType.text,
+    placeholder: 'Name',
+  },
+  address: {
+    type: InputType.text,
+    placeholder: 'Address',
+  },
+  note: {
+    type: InputType.text,
+    placeholder: 'Note',
+  },
+  age: {
+    type: InputType.number,
+    placeholder: 'Age',
+  },
+}
