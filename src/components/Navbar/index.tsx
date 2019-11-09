@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom';
 import { ClickParam } from 'antd/lib/menu';
 
 import { DEFAULT_NAV_LINK, navigation } from '../../utils/navigation';
+import { INavigation } from '../../models/navigation';
 
 import { NavbarPropsType, NavbarStateType } from './Navbar.types';
 import './Navbar.scss';
-import { INavigation } from '../../models/navigation';
 
 const { Item } = Menu;
 

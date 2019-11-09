@@ -1,32 +1,27 @@
-import { BehaviorSubject, Observable } from 'rxjs';
-import { TTrackToAdd } from '../models/track';
+import { BehaviorSubject, merge, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
-interface TracksViewModel {
+interface ModalViewModel<TypeToAdd> {
   isVisible$: Observable<boolean>;
   setIsVisible: (flag: boolean) => void;
-  cardControls$: Observable<TTrackToAdd>;
-  onValueChange: (value: any) => void;
+  cardControls$: Observable<TypeToAdd | undefined>;
+  onValueChange: (value: TypeToAdd) => void;
 }
 
-const createTracksViewModel = (): TracksViewModel => {
-  const cardControls: TTrackToAdd = {
-    name: '',
-    author: '',
-    duration: null,
-    year: null,
-  };
 
+export const createModalViewModel = <TypeToAdd>(): ModalViewModel<TypeToAdd> => {
   const isVisibleSubject = new BehaviorSubject<boolean>(false);
-  const cardControlsSubject = new BehaviorSubject<TTrackToAdd>(cardControls);
-
   const isVisible$ = isVisibleSubject.asObservable();
+  const setIsVisible = (flag: boolean) => {  // open / close modal window
+    isVisibleSubject.next(flag);
+    if (!flag) {
+      onValueChange(undefined);
+    }
+  }
+
+  const cardControlsSubject = new BehaviorSubject<TypeToAdd| undefined>(undefined);
   const cardControls$ = cardControlsSubject.asObservable();
-
-  const setIsVisible = (flag: boolean) => isVisibleSubject.next(flag);
-
-  const onValueChange = (value: TTrackToAdd) => {
-    cardControlsSubject.next(value);
-  };
+  const onValueChange = (value:  TypeToAdd | undefined) => cardControlsSubject.next(value);
 
   return {
     isVisible$,
@@ -36,4 +31,3 @@ const createTracksViewModel = (): TracksViewModel => {
   }
 };
 
-export const trackViewModel = createTracksViewModel();

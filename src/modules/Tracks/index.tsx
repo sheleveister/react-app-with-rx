@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import TableControls from '../../components/TableControls';
 import TableComponent from '../../components/Table';
 import { columns } from '../../utils/tracks.utils';
-import { ITrack } from '../../models/track';
+import { ITrack, TTrackToAdd } from '../../models/track';
 
 import TracksCard from './TracksCard';
 import './Tracks.scss';
@@ -13,10 +13,9 @@ export type TracksPropsType = {
   tracks: ITrack[];
   isVisible: boolean;
   setIsVisible: (flag: boolean) => void;
-  handleCancel: () => void;
-  cardControls: any;
+  cardControls: TTrackToAdd;
   onValueChange: (value: any) => void;
-  saveCard: (data: any) => void;
+  saveCard: (data: TTrackToAdd) => void;
 };
 
 

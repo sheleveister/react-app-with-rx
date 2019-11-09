@@ -1,9 +1,9 @@
 import React, { ChangeEvent, Component } from 'react';
-import { Input, Button } from 'antd';
+import { Button, Input } from 'antd';
 
 import ModalDialog from '../../components/Modal';
+
 import { TracksPropsType } from './index';
-import { defaultCardControls } from '../../containers/TracksContainer';
 
 type TracksCardPropsType = TracksPropsType & {};
 
@@ -31,9 +31,8 @@ class TracksCard extends Component<TracksCardPropsType> {
   };
 
   handleCloseCard = () => {
-    const { setIsVisible, onValueChange } = this.props;
+    const { setIsVisible } = this.props;
     setIsVisible(false);
-    onValueChange(defaultCardControls);
   };
 
   render() {
