@@ -6,4 +6,4 @@ export interface ITrack {
   year: number|undefined;
 }
 
-export type TTrackToAdd = Omit<ITrack, 'id'>;
+export type RawItem<ITrack> = Omit<ITrack, 'id'>;

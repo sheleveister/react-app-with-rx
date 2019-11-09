@@ -2,29 +2,19 @@ import React, { Component } from 'react';
 
 import TableControls from '../../components/TableControls';
 import TableComponent from '../../components/Table';
-import { columns } from '../../utils/tracks.utils';
-import { ITrack, TTrackToAdd } from '../../models/track';
+import { columns, mapTrackToInput } from '../../utils/tracks.utils';
+import { ITrack } from '../../models/track';
+import { TrackModalContainer } from '../../containers/TrackModalContainer';
 
-import TracksCard from './TracksCard';
 import './Tracks.scss';
 
 
 export type TracksPropsType = {
   tracks: ITrack[];
-  isVisible: boolean;
-  setIsVisible: (flag: boolean) => void;
-  cardControls: TTrackToAdd;
-  onValueChange: (value: any) => void;
-  saveCard: (data: TTrackToAdd) => void;
+  openModal: () => void;
 };
 
-
 class Tracks extends Component<TracksPropsType> {
-  handleCreateNewTrack = () => {
-    const { setIsVisible } = this.props;
-    setIsVisible(true);
-  };
-
   render() {
     const { tracks } = this.props;
 
@@ -33,13 +23,15 @@ class Tracks extends Component<TracksPropsType> {
         <TableControls
           buttonText="Create new Track"
           iconTitle="Delete Track"
-          handleOnClick={this.handleCreateNewTrack}
+          handleOnClick={this.props.openModal}
         />
         <TableComponent<ITrack>
           columns={columns}
           data={tracks}
         />
-        <TracksCard {...this.props} />
+        <TrackModalContainer
+          mapModelToInput={mapTrackToInput}
+        />
       </div>
     )
   }
